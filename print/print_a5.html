@@ -1,156 +1,403 @@
-<html lang="ru"><head>
-<meta charset="UTF-8">
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
 <title>Листовка Оптоволокно</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
-/* Настройка для A5 вертикаль (148x210 мм) */
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-body {
-}
 
-.page_a4{
-    width: 297mm;
-    height: 210mm;
-    border: solid 1px;
-    padding: 4mm 0mm;
-}
+/* Общие сбросы */
+*{ margin:0; padding:0; box-sizing:border-box; font-weight: bold;}
+body{ font-family: Arial, sans-serif; }
 
+/* Макет листовки (A5 вертикаль внутри ландшафта A4) */
 .page_a3{
     position: relative;
     width: 148mm;
     height: 210mm;
     padding: 5mm;
-    font-family: Arial, sans-serif;
     color: #000;
     background: #fff;
     box-sizing: border-box;
-    border: solid 1px;
-}
-}
-
-h1 {
-    font-size: 20pt;
-    font-weight: bold;
-    margin-bottom: 8pt;
+    border: solid 1px #000;
 }
 
-h2 {
-    font-size: 14pt;
-    font-weight: bold;
-    margin-bottom: 6pt;
+.pagebg{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
 }
 
-p {
-    font-size: 10pt;
-    line-height: 1.4;
-    margin-bottom: 6pt;
+.badbg{
+    display: none;
+    background-image: url(badbg.jpg);
+    
 }
 
-ul {
-    padding-left: 20px;
-    margin-bottom: 8pt;
+/* Текст */
+h1 { font-size:20pt; font-weight:700; margin-bottom:8pt; }
+h2 { font-size:14pt; font-weight:700; margin-bottom:6pt; }
+p  { font-size:10pt; line-height:1.4; margin-bottom:6pt; }
+ul { /*padding-left:20px;*/ list-style: none; margin-bottom:8pt;}
+li { margin-bottom:2pt; }
+li > span.icon {
+  background: #000;
+  margin-right: 5px;
+  border: solid 2px #000;
+  border-radius: 50%;
+  width: 26px;
+  display: inline-block;
+  text-align: center;
+  line-height: 22px;
 }
 
-li {
-    margin-bottom: 4pt;
-}
 
+/* CTA */
 .cta {
-    border: 2px solid #000;
-    padding: 8pt;
-    margin-top: 10pt;
-    text-align: center;
-    font-weight: bold;
+  border: 2px solid #000;
+  padding: 8pt;
+  margin-top: 10pt;
+  text-align: center;
+  font-weight: bold;
+  display: inline-block;
+  width: 100%;
+  border-radius: 2mm;
 }
 
-.icon {
-    font-weight: bold;
-    margin-right: 4pt;
-}
+/* QR и подпись */
+.qr { margin-top:12pt; text-align:center; }
+.small { font-size:8pt; color:#555; margin-top:8pt; }
 
-.qr {
-    margin-top: 12pt;
-    text-align: center;
-}
-
-.small {
-    font-size: 8pt;
-    color: #555;
-    margin-top: 8pt;
-}
+/* Нижняя плавающая карточка вызова */
 .call {
     background: #000;
     color: #fff;
     height: 12mm;
     position: absolute;
-    left: 4mm;
-    right: 5mm;
-    bottom: 4mm;
+    left: 0mm;
+    right: 0mm;
+    bottom: 0mm;
     border-radius: 2mm;
-    margin-left: 1mm;
+    padding: 2mm;
+    display:flex;
+    align-items:center;
+    gap:8px;
 }
-.call > h2 {
-    display: inline-block;
-    padding: 0mm 4mm;
-    line-height: 12mm;
-    font-size: 24pt;
+.call h2 { margin:0; font-size:21pt; line-height:1; }
+
+/* Переключатель стиля (панель) */
+#style-switcher{
+  position: fixed;
+  top: 12px;
+  right: 12px;
+  width: 220px;
+  background: #fff;
+  color: #000;
+  border: 1px solid #ccc;
+  padding: 8px;
+  border-radius: 8px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+  z-index: 9999;
+  font-family: Arial, sans-serif;
+  font-size:13px;
 }
+
+/* Стили ползунка (минимальные) */
+#bg-range { -webkit-appearance: none; height: 6px; background: linear-gradient(90deg,#ddd,#999); border-radius: 4px; }
+#bg-range::-webkit-slider-thumb { -webkit-appearance: none; width:14px; height:14px; background:#fff; border:2px solid #666; border-radius:50%; box-shadow:0 1px 3px rgba(0,0,0,0.3); }
+
+/* Кнопки панели */
+#style-switcher button{
+  display: inline-block;
+  margin: 4px 4px 0 0;
+  padding: 6px 8px;
+  border-radius: 4px;
+  border: 1px solid #888;
+  background: #f6f6f6;
+  cursor: pointer;
+}
+#style-switcher button.active{
+  background: #222;
+  color: #fff;
+  border-color: #111;
+}
+
+/* Превью */
+#style-switcher .preview{
+  margin-top:8px;
+  padding:6px;
+  border-radius:4px;
+  background:#fafafa;
+}
+
+/* Класс для обёрнутых текстовых узлов — эффект "выделения" */
+.leaflet-highlight-bg {
+  display: inline;
+  background: #000 !important;
+  color: #fff !important;
+  padding: 3px 3px;
+  border-radius: 2px;
+  box-decoration-break: clone; /* для корректного переноса строк */
+}
+
+/* Скрыть панель при печати */
+@media print {
+  #style-switcher { display: none !important; }
+}
+
 </style>
 </head>
-
 <body>
-        <div class="page_a3">
-            <!-- Заголовок -->
-            <h1 style="font-size: 21pt;">В район приходит долгожданный оптоволоконный интернет!</h1>
 
-            <h2>Помогаю подключиться быстро и без лишней бюрократии</h2>
+<!-- Панель переключения стиля (не печатать) -->
+<div id="style-switcher" aria-label="Переключатель стиля">
+    <div style="font-weight:700;margin-bottom:6px;">Стиль листовки</div>
+        <div>
+            <button id="style-default" class="active" title="Исходный (белый)">Исходный</button>
+            <button id="style-dark" title="Тёмная версия">Тёмный</button>
+            <button id="style-highlight" title="Выделенный">Выделенный</button>
+        </div>
+    <div style="margin-top:8px;font-size:12px;">Градиент фона</div>
+    <input id="bg-range" type="range" min="0" max="100" value="0" style="width:100%;margin-top:6px;">
+    <div style="font-size:11px;color:#666;margin-top:6px;">0 — белый · 100 — чёрный</div>
+    <div class="preview" id="style-preview">Превью: выделение текста — чёрный фон, белый текст</div>
+</div>
 
-            <p>Я работаю установщиком в вашем районе и буду лично участвовать в подключениях частных домов.  
-            Можно заранее оставить заявку и попасть в первую волну.</p>
+<!-- Листовка -->
+<div class="page_a3" id="leaflet">
+    <div class="badbg pagebg"></div>
+    <div class="goodbg pagebg"></div>
+    <div style="position: relative;height: 100%;width: 100%;">
+        <h1>В район приходит долгожданный оптоволоконный интернет!</h1>
 
-            <!-- Преимущества -->
-            <ul>
-            <li><span class="icon">⚡</span>Ускоренное подключение — прямая связь с монтажником</li>
-            <li><span class="icon">🛠</span>Помощь с выбором оборудования</li>
-            <li><span class="icon">🤝</span>Личный контроль — от заявки до запуска интернета</li>
-            <li><span class="icon">🛡️</span>Стабильная работа: даже во время беспилотной опасности</li>
-            </ul>
+        <h2>Помогаю подключиться быстро и без лишней бюрократии</h2>
 
-            <!-- Блок доверия / история -->
-            <p> 
-            Этой стройки ждали несколько лет — и я вместе с вами.  
-            Я буду подключать дома района и заинтересован, чтобы всё прошло быстро и без проблем.</p>
+        <p>Я работаю установщиком в вашем районе и буду лично участвовать в подключениях частных домов.  
+        Можно заранее оставить заявку и попасть в первую волну.</p>
 
-            <!-- CTA -->
-            <div class="cta">
-            Напишите сейчас и попадите в первую волну:<br>
-            Telegram: @telecom26<br>
-            WhatsApp: +79187556579<br>
-            VK: vk.com/rostelecom26<br>
-            Можно просто написать свой адрес и я с Вами свяжусь
-            </div>
+        <ul>
+          <li><span class="icon">⚡</span>Ускоренное подключение — прямая связь с монтажником</li>
+          <li><span class="icon">🛠</span>Помощь с выбором оборудования</li>
+          <li><span class="icon">🤝</span>Личный контроль — от заявки до запуска интернета</li>
+          <li><span class="icon">🛡️</span>Стабильная работа: даже во время беспилотной опасности</li>
+        </ul>
 
-            <!-- QR код -->
-            <div class="qr">
-            <img src="qr_placeholder.png" alt="QR для связи" width="100">
-            <img src="qr_placeholder2.png" alt="QR для связи" width="100">
-            <img src="qr_placeholder3.png" alt="QR для связи" width="100">
-            <img src="qr_placeholder4.png" alt="QR для связи" width="100">
-            <p class="small">Сканируйте QR и напишите в мессенджер</p>
-            </div>
+        <p>Этой стройки ждали несколько лет — и я вместе с вами.  
+        Я буду подключать дома района и заинтересован, чтобы всё прошло быстро и без проблем.</p>
 
-            <!-- Нижний мелкий текст -->
-            <p class="small">Предварительная заявока не накладывает на вас никаких обязательств. Только частный сектор. Подключение через 3–4 месяца.</p>
-            <div class="call">
-                <h2 style="width: 55mm;font-size: 21pt;">Никита ✆ 💬</h2>
-                <h2>+7(918)755-65-79</h2>
-            </div>
+        <div class="cta">
+          Напишите сейчас и попадите в первую волну:<br>
+          Telegram: @telecom26<br>
+          WhatsApp: +79187556579<br>
+          VK: vk.com/rostelecom26<br>
+          Можно просто написать свой адрес и я с Вами свяжусь
         </div>
 
-</body></html>
+        <div class="qr">
+          <img src="qr_placeholder.png" alt="QR для связи" width="100" style="margin-right:6px;">
+          <img src="qr_placeholder2.png" alt="QR для связи" width="100" style="margin-right:6px;">
+          <img src="qr_placeholder3.png" alt="QR для связи" width="100" style="margin-right:6px;">
+          <img src="qr_placeholder4.png" alt="QR для связи" width="100">
+          <p class="small">Сканируйте QR и напишите в мессенджер</p>
+        </div>
 
+        <p class="small">Предварительная заявка не накладывает на вас никаких обязательств. Только частный сектор. Подключение через 3–4 месяца.</p>
 
+        <div class="call">
+          <h2>Никита ✆ 💬</h2>
+          <h2 style="font-size:15pt; margin-left:auto;">+7(918)755-65-79</h2>
+        </div>
+    </div>
+</div>
+
+<script>
+(function(){
+  const leaflet = document.getElementById('leaflet');
+
+  // панель и кнопки
+  const btnDefault = document.getElementById('style-default');
+  const btnDark = document.getElementById('style-dark');
+  const btnHighlight = document.getElementById('style-highlight');
+
+  // вспомогательные: список селекторов, где оборачиваем текстовые узлы
+  const TEXT_SELECTORS = ['h1','h2','p','li','.cta'];
+
+  function clearActive(){
+    [btnDefault, btnDark, btnHighlight].forEach(b=>b.classList.remove('active'));
+  }
+
+  // Удалить все динамические изменения (inline и spans от highlight)
+  function applyDefault(){
+    clearActive(); btnDefault.classList.add('active');
+    // убрать фон у контейнера
+    leaflet.style.background = '';
+    leaflet.style.color = '';
+    leaflet.style.filter = '';
+
+    // удалить класс у .cta если был
+    leaflet.querySelectorAll('.cta').forEach(e=>{
+      e.style.background = '';
+      e.style.color = '';
+      e.style.borderColor = '';
+      e.style.boxShadow = '';
+    });
+
+    // Убрать обёртки span.leaflet-highlight-bg, восстановить текстовые узлы
+    unwrapHighlightSpans();
+  }
+
+  function applyDark(){
+    clearActive(); btnDark.classList.add('active');
+    // фон страницы темный
+    leaflet.style.background = '#0f0f10';
+    leaflet.style.color = '#f2f2f2';
+
+    leaflet.querySelectorAll('.cta').forEach(e=>{
+      e.style.color = '#fff';
+      e.style.borderColor = '#fff';
+    });
+
+    // Удаляем выделения span, т.к. dark — весь блок окрашен
+    unwrapHighlightSpans();
+  }
+
+  /* ========= Highlight: оборачиваем ТОЛЬКО текстовые узлы в span с классом ========= */
+
+  // Создать span для текстового узла
+  function wrapTextNode(node){
+    const span = document.createElement('span');
+    span.className = 'leaflet-highlight-bg';
+    span.textContent = node.textContent;
+    return span;
+  }
+
+  // Обернуть текстовые узлы в указанных элементах (только непосредственные текстовые узлы)
+  function wrapTextNodesIn(selector){
+    const nodes = leaflet.querySelectorAll(selector);
+    nodes.forEach(node=>{
+      // Пропускаем элементы, где уже есть span.leaflet-highlight-bg внутри (чтобы не дублировать)
+      if(node.querySelector && node.querySelector('span.leaflet-highlight-bg')) return;
+
+      // Собираем текстовые узлы
+      const childNodes = Array.from(node.childNodes);
+      childNodes.forEach(ch=>{
+        if(ch.nodeType === Node.TEXT_NODE && ch.textContent.trim()){
+          // несколько подряд пробелов/переносов — сохраняем как есть
+          const span = wrapTextNode(ch);
+          node.replaceChild(span, ch);
+        }
+      });
+    });
+  }
+
+  // Развернуть все span.leaflet-highlight-bg обратно в текстовые узлы
+  function unwrapHighlightSpans(){
+    const spans = Array.from(leaflet.querySelectorAll('span.leaflet-highlight-bg'));
+    spans.forEach(span=>{
+      const text = document.createTextNode(span.textContent);
+      span.parentNode.replaceChild(text, span);
+    });
+  }
+
+  function applyHighlight(){
+    clearActive(); btnHighlight.classList.add('active');
+    // фон контейнера оставить по умолчанию (белым)
+    leaflet.style.background = '';
+    leaflet.style.color = '';
+
+    // Оборачиваем текстовые узлы в выбранных элементах
+    TEXT_SELECTORS.forEach(sel => wrapTextNodesIn(sel));
+
+    // Тонкая настройка для .cta: чуть сильнее контраст
+    leaflet.querySelectorAll('.cta').forEach(e=>{
+      // если .cta содержит текстовые ноды, они будут обёрнуты; оставим фоновую тень
+      e.style.boxShadow = 'inset 0 1px 0 rgba(255,255,255,0.06)';
+      e.style.borderColor = '#000';
+    });
+  }
+
+  // Обработчики кнопок
+  btnDefault.addEventListener('click', applyDefault);
+  btnDark.addEventListener('click', applyDark);
+  btnHighlight.addEventListener('click', applyHighlight);
+
+  // Сохранение состояния в localStorage (опционально)
+  try{
+    const key = 'leaflet_style_mode_v1';
+    const saved = localStorage.getItem(key);
+    if(saved === 'dark') applyDark();
+    else if(saved === 'highlight') applyHighlight();
+    else applyDefault();
+
+    [btnDefault,btnDark,btnHighlight].forEach(b=>{
+      b.addEventListener('click', ()=>{
+        const mode = b.id === 'style-dark' ? 'dark' : (b.id === 'style-highlight' ? 'highlight' : 'default');
+        localStorage.setItem(key, mode);
+      });
+    });
+  }catch(e){
+    applyDefault();
+  }
+
+  // Дополнительно: при изменении размера содержимого — можно очищать/перезапускать обёртки,
+  // но пока оставим статично (работает для большинства статических страниц).
+
+})();
+
+// Градиентный ползунок управления фоном (0 = белый, 100 = чёрный)
+const bgRange = document.getElementById('bg-range');
+
+// Функция интерполяции цвета (0..1) между белым и чёрным — возвращает CSS rgb()
+function interpGray(t){
+  // t от 0 до 1
+  const v = Math.round(255 * (1 - t)); // 255 -> 0
+  return `rgb(${v},${v},${v})`;
+}
+
+// Устанавливает фон и автоматически подбирает цвет текста (контраст)
+function applyRangeValue(val){
+  const t = Math.min(100, Math.max(0, Number(val))) / 100;
+  // фон
+  leaflet.style.background = interpGray(t);
+
+  // вычислим цвет текста: если фон темнее средней -> светлый текст, иначе тёмный
+  const textIsLight = (1 - t) < 0.5; // эквивалент: v > 127
+  if(t > 0.5){
+    leaflet.style.color = '#ffffff';
+  } else {
+    leaflet.style.color = '#000000';
+  }
+
+  // Обновим кнопки состояния: если ползунок не на 0/100, снять активность с default/dark
+  if(val == 0){
+    // оставить метку исходный активной
+    clearActive(); btnDefault.classList.add('active');
+  } else if(val == 100){
+    clearActive(); btnDark.classList.add('active');
+  } else {
+    // промежуточный — снять все активные
+    clearActive();
+  }
+}
+
+// Обработчик изменения
+bgRange.addEventListener('input', function(){
+  applyRangeValue(this.value);
+});
+
+// При инициализации — если в localStorage есть сохранение, применим
+try{
+  const savedBg = localStorage.getItem('leaflet_bg_range_v1');
+  if(savedBg !== null){
+    bgRange.value = savedBg;
+    applyRangeValue(savedBg);
+  }
+  // сохранять при изменении
+  bgRange.addEventListener('change', ()=> localStorage.setItem('leaflet_bg_range_v1', bgRange.value));
+}catch(e){}
+</script>
+
+</body>
+</html>

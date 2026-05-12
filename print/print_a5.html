@@ -1,6 +1,5 @@
 <!doctype html>
-<html lang="ru">
-<head>
+<html lang="ru"><head>
 <meta charset="utf-8">
 <title>Листовка Оптоволокно</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -31,9 +30,9 @@ body{ font-family: Arial, sans-serif; }
 }
 
 .badbg{
-    display: none;
-    background-image: url(badbg.jpg);
-    
+    /*display: none;*/
+    background-image: url(badbg3.jpg);
+    background-size: cover;
 }
 
 /* Текст */
@@ -56,7 +55,7 @@ li > span.icon {
 
 /* CTA */
 .cta {
-  border: 2px solid #000;
+  border: 2px solid;
   padding: 8pt;
   margin-top: 10pt;
   text-align: center;
@@ -73,6 +72,7 @@ li > span.icon {
 /* Нижняя плавающая карточка вызова */
 .call {
     background: #000;
+    border: solid 2px;
     color: #fff;
     height: 12mm;
     position: absolute;
@@ -155,9 +155,9 @@ li > span.icon {
 <div id="style-switcher" aria-label="Переключатель стиля">
     <div style="font-weight:700;margin-bottom:6px;">Стиль листовки</div>
         <div>
-            <button id="style-default" class="active" title="Исходный (белый)">Исходный</button>
-            <button id="style-dark" title="Тёмная версия">Тёмный</button>
-            <button id="style-highlight" title="Выделенный">Выделенный</button>
+            <button id="style-default" class="" title="Исходный (белый)">Исходный</button>
+            <button id="style-dark" title="Тёмная версия" class="">Тёмный</button>
+            <button id="style-highlight" title="Выделенный" class="active">Выделенный</button>
         </div>
     <div style="margin-top:8px;font-size:12px;">Градиент фона</div>
     <input id="bg-range" type="range" min="0" max="100" value="0" style="width:100%;margin-top:6px;">
@@ -166,48 +166,50 @@ li > span.icon {
 </div>
 
 <!-- Листовка -->
-<div class="page_a3" id="leaflet">
+<div class="page_a3" id="leaflet" style="">
     <div class="badbg pagebg"></div>
-    <div class="goodbg pagebg"></div>
+    <div class="goodbg pagebg" style="background: rgb(0, 0, 0);"></div>
     <div style="position: relative;height: 100%;width: 100%;">
-        <h1>В район приходит долгожданный оптоволоконный интернет!</h1>
+        <h1><span class="leaflet-highlight-bg">В район приходит долгожданный оптоволоконный интернет!</span></h1>
 
-        <h2>Помогаю подключиться быстро и без лишней бюрократии</h2>
+        <h2><span class="leaflet-highlight-bg">Помогаю подключиться быстро и без лишней бюрократии</span></h2>
 
-        <p>Я работаю установщиком в вашем районе и буду лично участвовать в подключениях частных домов.  
-        Можно заранее оставить заявку и попасть в первую волну.</p>
+        <p><span class="leaflet-highlight-bg">Я работаю установщиком в вашем районе и буду лично участвовать в подключениях частных домов.  
+        Можно заранее оставить заявку и попасть в первую волну.</span></p>
 
         <ul>
-          <li><span class="icon">⚡</span>Ускоренное подключение — прямая связь с монтажником</li>
-          <li><span class="icon">🛠</span>Помощь с выбором оборудования</li>
-          <li><span class="icon">🤝</span>Личный контроль — от заявки до запуска интернета</li>
-          <li><span class="icon">🛡️</span>Стабильная работа: даже во время беспилотной опасности</li>
+          <li><span class="icon">⚡</span><span class="leaflet-highlight-bg">Ускоренное подключение — прямая связь с монтажником</span></li>
+          <li><span class="icon">🛠</span><span class="leaflet-highlight-bg">Помощь с выбором оборудования</span></li>
+          <li><span class="icon">🤝</span><span class="leaflet-highlight-bg">Личный контроль — от заявки до запуска интернета</span></li>
+          <li><span class="icon">🛡️</span><span class="leaflet-highlight-bg">Стабильная работа: даже во время беспилотной опасности</span></li>
         </ul>
 
-        <p>Этой стройки ждали несколько лет — и я вместе с вами.  
-        Я буду подключать дома района и заинтересован, чтобы всё прошло быстро и без проблем.</p>
+        <p><span class="leaflet-highlight-bg">Этой стройки ждали несколько лет — и я вместе с вами.  
+        Я буду подключать дома района и заинтересован, чтобы всё прошло быстро и без проблем.</span></p>
 
-        <div class="cta">
-          Напишите сейчас и попадите в первую волну:<br>
-          Telegram: @telecom26<br>
-          WhatsApp: +79187556579<br>
-          VK: vk.com/rostelecom26<br>
+        <div class="cta"><span class="leaflet-highlight-bg">
+          Напишите сейчас и попадите в первую волну:</span><br><span class="leaflet-highlight-bg">
+          Telegram: @telecom26</span><br><span class="leaflet-highlight-bg">
+          WhatsApp: +79187556579</span><br><span class="leaflet-highlight-bg">
+          VK: vk.com/rostelecom26</span><br><span class="leaflet-highlight-bg">
           Можно просто написать свой адрес и я с Вами свяжусь
-        </div>
+        </span></div>
 
         <div class="qr">
-          <img src="qr_placeholder.png" alt="QR для связи" width="100" style="margin-right:6px;">
-          <img src="qr_placeholder2.png" alt="QR для связи" width="100" style="margin-right:6px;">
-          <img src="qr_placeholder3.png" alt="QR для связи" width="100" style="margin-right:6px;">
-          <img src="qr_placeholder4.png" alt="QR для связи" width="100">
-          <p class="small">Сканируйте QR и напишите в мессенджер</p>
+            <div style="display: flex; justify-content: space-between;">
+                <img src="qr_placeholder.png" alt="QR для связи" width="100">
+                <img src="qr_placeholder2.png" alt="QR для связи" width="100">
+                <img src="qr_placeholder3.png" alt="QR для связи" width="100">
+                <img src="qr_placeholder4.png" alt="QR для связи" width="100">
+            </div>
+          <p class="small"><span class="leaflet-highlight-bg">Сканируйте QR и напишите в мессенджер</span></p>
         </div>
 
-        <p class="small">Предварительная заявка не накладывает на вас никаких обязательств. Только частный сектор. Подключение через 3–4 месяца.</p>
+        <p class="small"><span class="leaflet-highlight-bg">Предварительная заявка не накладывает на вас никаких обязательств. Только частный сектор. Подключение через 3–4 месяца.</span></p>
 
         <div class="call">
-          <h2>Никита ✆ 💬</h2>
-          <h2 style="font-size:15pt; margin-left:auto;">+7(918)755-65-79</h2>
+          <h2><span class="leaflet-highlight-bg">Никита ✆ 💬</span></h2>
+          <h2 style="font-size:15pt; margin-left:auto;"><span class="leaflet-highlight-bg">+7(918)755-65-79</span></h2>
         </div>
     </div>
 </div>
@@ -215,11 +217,25 @@ li > span.icon {
 <script>
 (function(){
   const leaflet = document.getElementById('leaflet');
+  const goodbg = leaflet.querySelector('.goodbg');
+  const badbg = leaflet.querySelector('.badbg');
 
-  // панель и кнопки
+  // панель и элементы управления
   const btnDefault = document.getElementById('style-default');
   const btnDark = document.getElementById('style-dark');
   const btnHighlight = document.getElementById('style-highlight');
+  const bgRange = document.getElementById('bg-range');
+
+  // создаём чекбокс видимости badbg в панели (если ещё нет)
+  let badbgToggle = document.getElementById('badbg-toggle');
+  if(!badbgToggle){
+    const cont = document.getElementById('style-switcher');
+    const row = document.createElement('div');
+    row.style.marginTop = '8px';
+    row.innerHTML = '<label style="font-size:12px;"><input id="badbg-toggle" type="checkbox" style="margin-right:6px;">Показать фон badbg</label>';
+    cont.insertBefore(row, cont.querySelector('.preview'));
+    badbgToggle = document.getElementById('badbg-toggle');
+  }
 
   // вспомогательные: список селекторов, где оборачиваем текстовые узлы
   const TEXT_SELECTORS = ['h1','h2','p','li','.cta'];
@@ -228,44 +244,26 @@ li > span.icon {
     [btnDefault, btnDark, btnHighlight].forEach(b=>b.classList.remove('active'));
   }
 
-  // Удалить все динамические изменения (inline и spans от highlight)
+  // ====== Default / Dark ======
   function applyDefault(){
     clearActive(); btnDefault.classList.add('active');
-    // убрать фон у контейнера
-    leaflet.style.background = '';
+    // убираем чёрный оверлей (сбрасываем rgba)
+    if(goodbg) goodbg.style.backgroundColor = '';
     leaflet.style.color = '';
-    leaflet.style.filter = '';
-
-    // удалить класс у .cta если был
-    leaflet.querySelectorAll('.cta').forEach(e=>{
-      e.style.background = '';
-      e.style.color = '';
-      e.style.borderColor = '';
-      e.style.boxShadow = '';
-    });
-
-    // Убрать обёртки span.leaflet-highlight-bg, восстановить текстовые узлы
     unwrapHighlightSpans();
+    if(bgRange) bgRange.value = 0;
   }
 
   function applyDark(){
     clearActive(); btnDark.classList.add('active');
-    // фон страницы темный
-    leaflet.style.background = '#0f0f10';
+    // делаем чёрный оверлей полностью непрозрачным
+    if(goodbg) goodbg.style.backgroundColor = 'rgba(0,0,0,1)';
     leaflet.style.color = '#f2f2f2';
-
-    leaflet.querySelectorAll('.cta').forEach(e=>{
-      e.style.color = '#fff';
-      e.style.borderColor = '#fff';
-    });
-
-    // Удаляем выделения span, т.к. dark — весь блок окрашен
     unwrapHighlightSpans();
+    if(bgRange) bgRange.value = 100;
   }
 
-  /* ========= Highlight: оборачиваем ТОЛЬКО текстовые узлы в span с классом ========= */
-
-  // Создать span для текстового узла
+  // ====== Highlight (обёртка текстовых узлов) ======
   function wrapTextNode(node){
     const span = document.createElement('span');
     span.className = 'leaflet-highlight-bg';
@@ -273,18 +271,13 @@ li > span.icon {
     return span;
   }
 
-  // Обернуть текстовые узлы в указанных элементах (только непосредственные текстовые узлы)
   function wrapTextNodesIn(selector){
     const nodes = leaflet.querySelectorAll(selector);
     nodes.forEach(node=>{
-      // Пропускаем элементы, где уже есть span.leaflet-highlight-bg внутри (чтобы не дублировать)
       if(node.querySelector && node.querySelector('span.leaflet-highlight-bg')) return;
-
-      // Собираем текстовые узлы
       const childNodes = Array.from(node.childNodes);
       childNodes.forEach(ch=>{
         if(ch.nodeType === Node.TEXT_NODE && ch.textContent.trim()){
-          // несколько подряд пробелов/переносов — сохраняем как есть
           const span = wrapTextNode(ch);
           node.replaceChild(span, ch);
         }
@@ -292,7 +285,6 @@ li > span.icon {
     });
   }
 
-  // Развернуть все span.leaflet-highlight-bg обратно в текстовые узлы
   function unwrapHighlightSpans(){
     const spans = Array.from(leaflet.querySelectorAll('span.leaflet-highlight-bg'));
     spans.forEach(span=>{
@@ -303,101 +295,103 @@ li > span.icon {
 
   function applyHighlight(){
     clearActive(); btnHighlight.classList.add('active');
-    // фон контейнера оставить по умолчанию (белым)
-    leaflet.style.background = '';
     leaflet.style.color = '';
-
-    // Оборачиваем текстовые узлы в выбранных элементах
     TEXT_SELECTORS.forEach(sel => wrapTextNodesIn(sel));
-
-    // Тонкая настройка для .cta: чуть сильнее контраст
-    leaflet.querySelectorAll('.cta').forEach(e=>{
-      // если .cta содержит текстовые ноды, они будут обёрнуты; оставим фоновую тень
-      e.style.boxShadow = 'inset 0 1px 0 rgba(255,255,255,0.06)';
-      e.style.borderColor = '#000';
-    });
+    if(bgRange) bgRange.value = 0;
   }
 
-  // Обработчики кнопок
+  // ====== Ползунок: управление прозрачностью чёрного слоя на goodbg ======
+  function applyRangeValue(val){
+    const t = Math.min(100, Math.max(0, Number(val))) / 100; // 0..1
+    const alpha = t; // alpha 0 = прозрачно; 1 = полностью чёрный
+    if(goodbg) goodbg.style.backgroundColor = `rgba(0,0,0,${alpha})`;
+    // текст контрастный — если overlay тёмный (alpha > 0.5) делаем белый
+    if(alpha > 0.5){
+      leaflet.style.color = '#ffffff';
+    } else {
+      leaflet.style.color = '#000000';
+    }
+    // управление активностью кнопок
+    if(val == 0){
+      clearActive(); btnDefault.classList.add('active');
+    } else if(val == 100){
+      clearActive(); btnDark.classList.add('active');
+    } else {
+      clearActive();
+    }
+  }
+
+  // ====== Обработчики ======
   btnDefault.addEventListener('click', applyDefault);
   btnDark.addEventListener('click', applyDark);
   btnHighlight.addEventListener('click', applyHighlight);
 
-  // Сохранение состояния в localStorage (опционально)
+  if(bgRange){
+    bgRange.addEventListener('input', function(){
+      applyRangeValue(this.value);
+    });
+  }
+
+  // чекбокс для badbg: переключаем display
+  badbgToggle.addEventListener('change', function(){
+    if(badbg){
+      badbg.style.display = this.checked ? '' : 'none';
+      try{ localStorage.setItem('leaflet_badbg_visible_v1', this.checked ? '1' : '0'); }catch(e){}
+    }
+  });
+
+  // ====== localStorage: сохранить/восстановить режим и фон и видимость badbg ======
   try{
-    const key = 'leaflet_style_mode_v1';
-    const saved = localStorage.getItem(key);
-    if(saved === 'dark') applyDark();
-    else if(saved === 'highlight') applyHighlight();
-    else applyDefault();
+    const modeKey = 'leaflet_style_mode_v1';
+    const bgKey = 'leaflet_bg_range_v1';
+    const badKey = 'leaflet_badbg_visible_v1';
+
+    const savedMode = localStorage.getItem(modeKey);
+    const savedBg = localStorage.getItem(bgKey);
+    const savedBad = localStorage.getItem(badKey);
+
+    if(savedBg !== null){
+      if(bgRange) bgRange.value = savedBg;
+      applyRangeValue(savedBg);
+    }
+
+    if(savedMode === 'dark') applyDark();
+    else if(savedMode === 'highlight') applyHighlight();
+    else if(savedMode === 'default') applyDefault();
+    else {
+      if(savedBg === null) applyDefault();
+    }
+
+    // восстановим видимость badbg
+    if(savedBad !== null){
+      const visible = savedBad === '1';
+      if(badbg) badbg.style.display = visible ? '' : 'none';
+      badbgToggle.checked = visible;
+    } else {
+      // по умолчанию видимый
+      badbgToggle.checked = true;
+    }
 
     [btnDefault,btnDark,btnHighlight].forEach(b=>{
       b.addEventListener('click', ()=>{
         const mode = b.id === 'style-dark' ? 'dark' : (b.id === 'style-highlight' ? 'highlight' : 'default');
-        localStorage.setItem(key, mode);
+        localStorage.setItem(modeKey, mode);
       });
     });
-  }catch(e){
-    applyDefault();
-  }
 
-  // Дополнительно: при изменении размера содержимого — можно очищать/перезапускать обёртки,
-  // но пока оставим статично (работает для большинства статических страниц).
+    if(bgRange){
+      bgRange.addEventListener('change', ()=> localStorage.setItem(bgKey, bgRange.value));
+    }
+  }catch(e){
+    // ignore storage errors
+  }
 
 })();
-
-// Градиентный ползунок управления фоном (0 = белый, 100 = чёрный)
-const bgRange = document.getElementById('bg-range');
-
-// Функция интерполяции цвета (0..1) между белым и чёрным — возвращает CSS rgb()
-function interpGray(t){
-  // t от 0 до 1
-  const v = Math.round(255 * (1 - t)); // 255 -> 0
-  return `rgb(${v},${v},${v})`;
-}
-
-// Устанавливает фон и автоматически подбирает цвет текста (контраст)
-function applyRangeValue(val){
-  const t = Math.min(100, Math.max(0, Number(val))) / 100;
-  // фон
-  leaflet.style.background = interpGray(t);
-
-  // вычислим цвет текста: если фон темнее средней -> светлый текст, иначе тёмный
-  const textIsLight = (1 - t) < 0.5; // эквивалент: v > 127
-  if(t > 0.5){
-    leaflet.style.color = '#ffffff';
-  } else {
-    leaflet.style.color = '#000000';
-  }
-
-  // Обновим кнопки состояния: если ползунок не на 0/100, снять активность с default/dark
-  if(val == 0){
-    // оставить метку исходный активной
-    clearActive(); btnDefault.classList.add('active');
-  } else if(val == 100){
-    clearActive(); btnDark.classList.add('active');
-  } else {
-    // промежуточный — снять все активные
-    clearActive();
-  }
-}
-
-// Обработчик изменения
-bgRange.addEventListener('input', function(){
-  applyRangeValue(this.value);
-});
-
-// При инициализации — если в localStorage есть сохранение, применим
-try{
-  const savedBg = localStorage.getItem('leaflet_bg_range_v1');
-  if(savedBg !== null){
-    bgRange.value = savedBg;
-    applyRangeValue(savedBg);
-  }
-  // сохранять при изменении
-  bgRange.addEventListener('change', ()=> localStorage.setItem('leaflet_bg_range_v1', bgRange.value));
-}catch(e){}
 </script>
+
+
+
+
 
 </body>
 </html>
